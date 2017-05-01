@@ -9,8 +9,10 @@ class Property(db.Model):
     temperature = db.Column(db.Integer)
     timestamp = db.Column(db.DateTime, server_default=db.func.now())
     image = db.Column(db.String)
+    # imageb = db.Column(db.LargeBinary)
 
-    def __init__(self, location, temperature, image):
+    def __init__(self, location, temperature, image, imageb):
         self.location = location
         self.temperature = temperature
         self.image = image
+        # self.imageb = imageb
