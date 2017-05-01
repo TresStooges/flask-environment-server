@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 import json
+import os
 
 print('app.py working')
 app = Flask(__name__)
@@ -10,7 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 engine = create_engine('postgres://localhost:5432/envirorpi_db')
 
-
+port = int(os.environ.get('PORT', 5000))
 import models
 
 
@@ -38,7 +39,8 @@ def environment():
     elif request.method == 'POST':
         new_property_data = json.loads(request.data)
         new_property = models.Property(
-            new_property_data["location"], new_property_data["temperature"], new_property_data["image"]
+            new_property_data["location"], new_property_data[
+                "temperature"], new_property_data["image"]
         )
         db.session.add(new_property)
         db.session.commit()
@@ -57,4 +59,4 @@ def lighting():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run()
+    app.run(host='0.0.0.0', port=port)
