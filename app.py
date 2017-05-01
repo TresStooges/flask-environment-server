@@ -6,7 +6,8 @@ import os
 
 print('app.py working')
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL'] or 'postgres://localhost:5432/enviropi_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL'] 
+ # 'postgres://localhost:5432/enviropi_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 engine = create_engine('postgres://localhost:5432/envirorpi_db')
