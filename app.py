@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-engine = create_engine('postgres://localhost:5432/envirorpi_db')
+# engine = create_engine('postgres://localhost:5432/envirorpi_db')
 
 port = int(os.environ.get('PORT', 5000))
 import models
