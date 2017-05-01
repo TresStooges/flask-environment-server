@@ -1,27 +1,17 @@
-import sqlite3
+from app import db
 
 
-def drop_table():
-    with sqlite3.connect('environment.db') as connection:
-        c = connection.cursor()
-        c.execute("""DROP TABLE IF EXISTS environment""")
-    return True
+class Property(db.Model):
+    """docstring for Blog"""
 
+    id = db.Column(db.Integer, primary_key=True)
+    location = db.Column(db.String)
+    temperature = db.Column(db.Integer)
+    timestamp = db.Column(db.DateTime, server_default=db.func.now())
+    image = db.Column(db.String)
 
-def create_db():
-    with sqlite3.connect('environment.db') as connection:
-        c = connection.cursor()
-        table = """CREATE TABLE environment(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            property TEXT NOT NULL,
-            measurement INTEGER NOT NULL,
-            status TEXT NOT NULL
-        );
-        """
-        c.execute(table)
-    return True
-
-
-if __name__ == '__main__':
-    drop_table()
-    create_db()
+    def __init__(self, location, temperature, timestamp, image):
+        self.location = location
+        self.temperature = temperature
+        self.timestamp = timestamp
+        self.image = image
