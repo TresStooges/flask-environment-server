@@ -1,4 +1,5 @@
-from flask import Flask
+import sqlite3
+from flask import Flask, request
 app = Flask(__name__)
 
 
@@ -11,7 +12,11 @@ def index():
 
 @app.route('/environment', methods=['GET'])
 def environment():
-    return "All Environment Data"
+     with sqlite3.connect('environment.db') as connection:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM environment ORDER BY id desc")
+        all_data = cursor.fetchall()
+        return all_data
 
 
 @app.route('/temperature', methods=['GET', 'PATCH'])
