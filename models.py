@@ -2,7 +2,7 @@ from app import db
 
 
 class Property(db.Model):
-    """docstring for Blog"""
+    """docstring for Propert"""
 
     id = db.Column(db.Integer, primary_key=True)
     location = db.Column(db.String)
