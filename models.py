@@ -16,3 +16,4 @@ class Property(db.Model):
         self.temperature = temperature
         self.image = image
         # self.imageb = imageb
+        # will have to fix this
