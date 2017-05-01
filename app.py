@@ -23,7 +23,26 @@ def index():
 
 @app.route('/environment', methods=['GET', 'POST'])
 def environment():
-    return "All Environment Data"
+    if request.method == 'GET':
+        all_environment_data = []
+        properties = models.Property.query.all()
+        for property in properties:
+            all_environment_data.append({
+                'id': property.id,
+                'location': property.location,
+                'temperature': property.temperature,
+                'timestamp': property.timestamp,
+                'image': property.image
+            })
+        return jsonify(all_environment_data)
+    elif request.method == 'POST':
+        new_property_data = json.loads(request.data)
+        new_property = models.Property(
+            new_property_data["location"], new_property_data["temperature"], new_property_data["image"]
+        )
+        db.session.add(new_property)
+        db.session.commit()
+        return request.data
 
 
 @app.route('/temperature', methods=['GET', 'POST'])
