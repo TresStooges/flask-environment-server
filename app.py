@@ -69,11 +69,10 @@ def lighting():
     return "Lighting Data"
 
 
-
 @app.route('/images', methods=['GET', 'POST'])
 def upload_file():
-    # if request.method == 'GET':
-    #     return 'HASFDASF'
+    if request.method == 'GET':
+        return 'HASFDASF'
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -88,7 +87,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
+            return redirect(url_for('upload_file',
                                     filename=filename))
     return '''
     <!doctype html>
