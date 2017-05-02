@@ -34,16 +34,16 @@ def environment():
                 'location': property.location,
                 'temperature': property.temperature,
                 'timestamp': property.timestamp,
-                'image': property.image,
-                'imageb': property.imageb
+                'image': property.image
+                # 'imageb': property.imageb
             })
         return jsonify(all_environment_data)
     elif request.method == 'POST':
         new_property_data = json.loads(request.data)
         new_property = models.Property(
             new_property_data["location"], new_property_data[
-                "temperature"], new_property_data["image"],
-                new_property_data["imageb"]
+                "temperature"], new_property_data["image"]
+                # new_property_data["imageb"]
         )
         db.session.add(new_property)
         db.session.commit()
