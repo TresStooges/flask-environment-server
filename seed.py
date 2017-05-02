@@ -7,7 +7,7 @@ db.session.commit()
 
 property1 = Property('1062 Delaware St, Denver, CO 80204', 72,
                      'amazon.com/images',
-                     '\xe7\xe9\xe7\xe9\xe7\xe9\xe7\xe9\xe7\xe9'
+                     '010110100110110101001110110010100011010101010101000110101010011011010'
                      )
 
 
