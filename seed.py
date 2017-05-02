@@ -6,8 +6,8 @@ db.session.query(models.Property).delete()
 db.session.commit()
 
 property1 = Property('1062 Delaware St, Denver, CO 80204', 72,
-                     'amazon.com/images'
-                     # LargeBinary(60)
+                     'amazon.com/images',
+                     '\xe7\xe9\xe7\xe9\xe7\xe9\xe7\xe9\xe7\xe9'
                      )
 
 
