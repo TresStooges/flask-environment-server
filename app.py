@@ -15,8 +15,8 @@ cloudinary.config(
 
 print('app.py working')
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost:5432/enviropi_db'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost:5432/enviropi_db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 # engine = create_engine('postgres://localhost:5432/envirorpi_db')
@@ -82,10 +82,23 @@ def upload_file():
         if 'file' not in request.files:
             print('No file part')
             return ('asdfasfasdfasfasfdasfasfdsfasdfasdfasdfsadf')
+        print(request.files)
         file = request.files['file']
+        name = request.form['name']
+        print(name)
+        # name = request.files['name']
         image_url = cloudinary.uploader.upload(file)
-        print(request)
-        print(image_url["secure_url"])
+        # print(request)
+        # print(image_url["secure_url"])
+        new_property = models.Property(
+            request.form['location'],
+            request.form['name'],
+            request.form['temperature'],
+            image_url["secure_url"]
+            # new_property_data["imageb"]
+        )
+        db.session.add(new_property)
+        db.session.commit()
     return image_url["secure_url"]
 
 
