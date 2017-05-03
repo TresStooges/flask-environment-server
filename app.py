@@ -6,8 +6,8 @@ import os
 
 print('app.py working')
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost:5432/enviropi_db'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost:5432/enviropi_db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 # engine = create_engine('postgres://localhost:5432/envirorpi_db')
@@ -35,7 +35,10 @@ def environment():
                 'name': property.name,
                 'temperature': property.temperature,
                 'timestamp': property.timestamp,
-                'image': property.image
+                'image': property.image,
+                'date': property.date,
+                'time': property.time
+
                 # 'imageb': property.imageb
             })
         return jsonify(all_environment_data)
@@ -45,7 +48,9 @@ def environment():
             new_property_data["location"],
             new_property_data["name"],
             new_property_data["temperature"],
-            new_property_data["image"]
+            new_property_data["image"],
+            new_property_data["date"],
+            new_property_data["time"]
             # new_property_data["imageb"]
         )
         db.session.add(new_property)
