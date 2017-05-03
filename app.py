@@ -83,9 +83,11 @@ def upload_file():
             print('No file part')
             return ('asdfasfasdfasfasfdasfasfdsfasdfasdfasdfsadf')
         file = request.files['file']
-        test = cloudinary.uploader.upload(file)
-        print(test)
-    return test["secure_url"]
+        image_url = cloudinary.uploader.upload(file)
+        incoming_object = json.loads(request.data)
+        print(incoming_object)
+        print(image_url["secure_url"])
+    return image_url["secure_url"]
 
 
 if __name__ == '__main__':
