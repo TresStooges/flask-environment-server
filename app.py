@@ -35,9 +35,9 @@ def environment():
                 'name': property.name,
                 'temperature': property.temperature,
                 'timestamp': property.timestamp,
-                'image': property.image,
-                'date': property.date,
-                'time': property.time
+                'image': property.image
+                # 'date': property.date,
+                # 'time': property.time
 
                 # 'imageb': property.imageb
             })
