@@ -77,28 +77,14 @@ def lighting():
 
 @app.route('/images', methods=['GET', 'POST'])
 def upload_file():
-    # if request.method == 'GET':
-    #     return 'HASFDASF'
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
             print('No file part')
             return ('asdfasfasdfasfasfdasfasfdsfasdfasdfasdfsadf')
         file = request.files['file']
-        test = cloudinary.uploader.upload(
-            file, folder="first_folder/second_folder/", public_id="FUCKYOU")
+        test = cloudinary.uploader.upload(file)
         print(test)
-
-        # if user does not select file, browser also
-        # submit a empty part without filename
-    #     if file.filename == '':
-    #         print('No selected file')
-    #         return redirect(request.url)
-    #     if file and allowed_file(file.filename):
-    #         filename = secure_filename(file.filename)
-    #         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    #         return redirect(url_for('uploaded_file',
-    #                                 filename=filename))
     return test["secure_url"]
 
 
