@@ -8,7 +8,7 @@ class Property(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     location = db.Column(db.Integer)
     name = db.Column(db.String)
-    temperature = db.Column(db.Integer)
+    temperature = db.Column(db.String)
     timestamp = db.Column(db.DateTime, server_default=db.func.now())
     image = db.Column(db.String)
     # date = db.Column(db.Date, server_default=datetime.date.today().strftime("%B %d, %Y"))
