@@ -48,9 +48,7 @@ def environment():
             new_property_data["location"],
             new_property_data["name"],
             new_property_data["temperature"],
-            new_property_data["image"],
-            new_property_data["date"],
-            new_property_data["time"]
+            new_property_data["image"]
             # new_property_data["imageb"]
         )
         db.session.add(new_property)
