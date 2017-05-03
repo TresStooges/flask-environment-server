@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 import json
 import os
-import Flask-Uploads
+# import Flask-Uploads
 
 
 
@@ -23,13 +23,13 @@ db = SQLAlchemy(app)
 # photos = UploadSet('photos', default_dest=lambda app: app.fileuploadfolder)
 
 
-port = int(os.environ.get('PORT', 5000))
+# port = int(os.environ.get('PORT', 5000))
 import models
 
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+# def allowed_file(filename):
+#     return '.' in filename and \
+#            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route('/', methods=['GET'])
