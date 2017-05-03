@@ -3,6 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 import json
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config(
+    cloud_name="enviropi",
+    api_key="183424931379914",
+    api_secret="3GFjxQJ1ExuMU8-acIQD9yUu2MY"
+)
 
 print('app.py working')
 app = Flask(__name__)
@@ -64,6 +73,41 @@ def temperature():
 @app.route('/lighting', methods=['GET', 'POST'])
 def lighting():
     return "Lighting Data"
+
+
+@app.route('/images', methods=['GET', 'POST'])
+def upload_file():
+    # if request.method == 'GET':
+    #     return 'HASFDASF'
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            print('No file part')
+            return ('asdfasfasdfasfasfdasfasfdsfasdfasdfasdfsadf')
+        file = request.files['file']
+        test = cloudinary.uploader.upload(
+            file, folder="first_folder/second_folder/", public_id="FUCKYOU")
+        print(test)
+
+        # if user does not select file, browser also
+        # submit a empty part without filename
+    #     if file.filename == '':
+    #         print('No selected file')
+    #         return redirect(request.url)
+    #     if file and allowed_file(file.filename):
+    #         filename = secure_filename(file.filename)
+    #         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    #         return redirect(url_for('uploaded_file',
+    #                                 filename=filename))
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+      <p><input type=file name=file>
+         <input type=submit value=Upload>
+    </form>
+    '''
 
 
 if __name__ == '__main__':
