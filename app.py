@@ -11,16 +11,16 @@ import Flask-Uploads
 print('app.py working')
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost:5432/enviropi_db'
-UPLOAD_FOLDER = './fileuploadfolder'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+# UPLOAD_FOLDER = './fileuploadfolder'
+# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 # engine = create_engine('postgres://localhost:5432/envirorpi_db')
 
 
-photos = UploadSet('photos', default_dest=lambda app: app.fileuploadfolder)
+# photos = UploadSet('photos', default_dest=lambda app: app.fileuploadfolder)
 
 
 port = int(os.environ.get('PORT', 5000))
