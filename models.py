@@ -12,7 +12,7 @@ class Property(db.Model):
     image = db.Column(db.String)
     # imageb = db.Column(db.LargeBinary)
 
-    def __init__(self, location, temperature, image):
+    def __init__(self, location, temperature, image, name):
         self.location = location
         self.temperature = temperature
         self.image = image
